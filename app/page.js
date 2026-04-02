@@ -202,7 +202,9 @@ export default function Page() {
   return (
     <main className="page">
       <section className="hero">
-        <h1>Gold Bias</h1>
+        <h1>
+          <span className="gold-glow-word">Gold</span> Bias
+        </h1>
         <p>Simple gold page for sessions, bias, news, and candles.</p>
       </section>
 
