@@ -108,6 +108,63 @@ function getImpactClass(impact) {
   return "impact-low";
 }
 
+function MiniCandle({ candle }) {
+  const bullish = candle.close >= candle.open;
+  const color = bullish ? "#4ade80" : "#f87171";
+
+  const range = Math.max(candle.high - candle.low, 0.0001);
+  const bodyTopValue = Math.max(candle.open, candle.close);
+  const bodyBottomValue = Math.min(candle.open, candle.close);
+
+  const wickTop = ((candle.high - bodyTopValue) / range) * 120;
+  const bodyHeight = Math.max(((bodyTopValue - bodyBottomValue) / range) * 120, 8);
+  const wickBottom = ((bodyBottomValue - candle.low) / range) * 120;
+
+  return (
+    <div className="mini-candle-wrap">
+      <div className="mini-candle-label">{candle.time}</div>
+
+      <div className="mini-candle-box">
+        <div className="mini-candle-chart">
+          <div className="mini-candle-scale top">{candle.high}</div>
+
+          <div className="mini-candle-core">
+            <div className="mini-candle-stick">
+              <div
+                className="wick"
+                style={{
+                  height: `${wickTop}px`,
+                  backgroundColor: color
+                }}
+              />
+              <div
+                className="body"
+                style={{
+                  height: `${bodyHeight}px`,
+                  backgroundColor: color
+                }}
+              />
+              <div
+                className="wick"
+                style={{
+                  height: `${wickBottom}px`,
+                  backgroundColor: color
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="mini-candle-scale bottom">{candle.low}</div>
+        </div>
+
+        <div className={bullish ? "mini-candle-bias green" : "mini-candle-bias red"}>
+          {bullish ? "Bullish" : "Bearish"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CandleBox({ title, candles, countdown }) {
   return (
     <div className="card">
@@ -119,27 +176,10 @@ function CandleBox({ title, candles, countdown }) {
         <div className="mini-timer">{countdown}</div>
       </div>
 
-      <div className="candle-list">
-        {candles.map((candle, index) => {
-          const direction = candle.close >= candle.open ? "Bullish" : "Bearish";
-
-          return (
-            <div key={index} className="candle-item">
-              <div className="candle-head">
-                <span>{candle.time}</span>
-                <span className={direction === "Bullish" ? "green" : "red"}>
-                  {direction}
-                </span>
-              </div>
-              <div className="candle-grid">
-                <div>Open: {candle.open}</div>
-                <div>High: {candle.high}</div>
-                <div>Low: {candle.low}</div>
-                <div>Close: {candle.close}</div>
-              </div>
-            </div>
-          );
-        })}
+      <div className="visual-candle-list">
+        {candles.map((candle, index) => (
+          <MiniCandle key={index} candle={candle} />
+        ))}
       </div>
     </div>
   );
