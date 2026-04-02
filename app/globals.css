@@ -209,24 +209,14 @@ body {
 .chart-candle {
   width: 90px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.chart-candle-label {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #cbd5e1;
-  font-weight: 700;
+  justify-content: center;
 }
 
 .chart-candle-area {
   position: relative;
   width: 100%;
   height: 220px;
-  border: 2px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.01);
+  background: transparent;
 }
 
 .chart-wick {
