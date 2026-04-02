@@ -82,7 +82,6 @@ function makeFakeCandles(base, count) {
     const low = Number((Math.min(open, close) - Math.random() * 10).toFixed(2));
 
     candles.push({
-      time: `Candle ${count - i}`,
       open: Number(open.toFixed(2)),
       high,
       low,
@@ -124,8 +123,6 @@ function CandleStick({ candle, minLow, maxHigh }) {
 
   return (
     <div className="chart-candle">
-      <div className="chart-candle-label">{candle.time}</div>
-
       <div className="chart-candle-area">
         <div
           className={`chart-wick ${colorClass}`}
@@ -184,9 +181,9 @@ function CandleBox({ title, candles, countdown }) {
 
 export default function Page() {
   const [now, setNow] = useState(new Date());
-  const [dailyCandles, setDailyCandles] = useState(() => makeFakeCandles(2325, 3));
-  const [fourHCandles, setFourHCandles] = useState(() => makeFakeCandles(2318, 3));
-  const [oneHCandles, setOneHCandles] = useState(() => makeFakeCandles(2312, 3));
+  const [dailyCandles] = useState(() => makeFakeCandles(2325, 3));
+  const [fourHCandles] = useState(() => makeFakeCandles(2318, 3));
+  const [oneHCandles] = useState(() => makeFakeCandles(2312, 3));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -194,16 +191,6 @@ export default function Page() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const refresh = setInterval(() => {
-      setDailyCandles(makeFakeCandles(2325, 3));
-      setFourHCandles(makeFakeCandles(2318, 3));
-      setOneHCandles(makeFakeCandles(2312, 3));
-    }, 5000);
-
-    return () => clearInterval(refresh);
   }, []);
 
   const session = useMemo(() => getSessionState(now), [now]);
