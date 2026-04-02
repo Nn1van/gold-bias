@@ -45,7 +45,6 @@ body {
   color: #f8fafc;
 }
 
-/* GOLD GLOW WORD */
 .gold-glow-word {
   color: #fcd34d;
   animation: goldPulse 5s ease-in-out infinite;
@@ -243,28 +242,83 @@ body {
   border: none;
 }
 
-.three-candle-chart {
+.tv-chart {
+  position: relative;
   height: 260px;
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  overflow: hidden;
+  padding: 18px 14px 12px;
+}
+
+.tv-grid-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.tv-grid-1 {
+  top: 20%;
+}
+
+.tv-grid-2 {
+  top: 40%;
+}
+
+.tv-grid-3 {
+  top: 60%;
+}
+
+.tv-grid-4 {
+  top: 80%;
+}
+
+.tv-price-label {
+  position: absolute;
+  right: 10px;
+  font-size: 11px;
+  color: #64748b;
+  background: rgba(2, 6, 23, 0.75);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.tv-price-top {
+  top: 8px;
+}
+
+.tv-price-bottom {
+  bottom: 8px;
+}
+
+.tv-chart-inner {
+  position: relative;
+  height: 220px;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
-  gap: 20px;
+  gap: 24px;
 }
 
-.chart-candle {
-  width: 90px;
+.tv-candle {
+  width: 58px;
+  height: 220px;
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
-.chart-candle-area {
+.tv-candle-area {
   position: relative;
   width: 100%;
   height: 220px;
-  background: transparent;
 }
 
-.chart-wick {
+.tv-wick {
   position: absolute;
   left: 50%;
   width: 2px;
@@ -272,21 +326,20 @@ body {
   border-radius: 999px;
 }
 
-.chart-body {
+.tv-body {
   position: absolute;
   left: 50%;
-  width: 36px;
+  width: 20px;
   transform: translateX(-50%);
-  border: 2px solid rgba(0, 0, 0, 0.35);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
-.candle-green {
-  background: #2563eb;
+.candle-up {
+  background: #22c55e;
 }
 
-.candle-red {
-  background: #f43f5e;
+.candle-down {
+  background: #ef4444;
 }
 
 .loading-box {
@@ -303,7 +356,6 @@ body {
   font-weight: 700;
 }
 
-/* SMOOTH 2.5s IN + 2.5s OUT */
 @keyframes goldPulse {
   0% {
     color: #fcd34d;
@@ -342,15 +394,15 @@ body {
     text-align: left;
   }
 
-  .three-candle-chart {
-    gap: 10px;
+  .tv-chart-inner {
+    gap: 14px;
   }
 
-  .chart-candle {
-    width: 70px;
+  .tv-candle {
+    width: 44px;
   }
 
-  .chart-body {
-    width: 28px;
+  .tv-body {
+    width: 16px;
   }
 }
