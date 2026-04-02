@@ -109,32 +109,34 @@ function getImpactClass(impact) {
 
 function CandleStick({ candle, minLow, maxHigh }) {
   const bullish = candle.close >= candle.open;
-  const colorClass = bullish ? "candle-green" : "candle-red";
+  const colorClass = bullish ? "candle-up" : "candle-down";
   const totalRange = Math.max(maxHigh - minLow, 0.0001);
 
-  const highOffset = ((maxHigh - candle.high) / totalRange) * 220;
-  const lowOffset = ((maxHigh - candle.low) / totalRange) * 220;
+  const wickTop = ((maxHigh - candle.high) / totalRange) * 220;
+  const wickBottom = ((maxHigh - candle.low) / totalRange) * 220;
+
   const bodyTopPrice = Math.max(candle.open, candle.close);
   const bodyBottomPrice = Math.min(candle.open, candle.close);
-  const bodyTopOffset = ((maxHigh - bodyTopPrice) / totalRange) * 220;
-  const bodyBottomOffset = ((maxHigh - bodyBottomPrice) / totalRange) * 220;
-  const bodyHeight = Math.max(bodyBottomOffset - bodyTopOffset, 8);
-  const wickHeight = Math.max(lowOffset - highOffset, 10);
+
+  const bodyTop = ((maxHigh - bodyTopPrice) / totalRange) * 220;
+  const bodyBottom = ((maxHigh - bodyBottomPrice) / totalRange) * 220;
+  const bodyHeight = Math.max(bodyBottom - bodyTop, 8);
+  const wickHeight = Math.max(wickBottom - wickTop, 12);
 
   return (
-    <div className="chart-candle">
-      <div className="chart-candle-area">
+    <div className="tv-candle">
+      <div className="tv-candle-area">
         <div
-          className={`chart-wick ${colorClass}`}
+          className={`tv-wick ${colorClass}`}
           style={{
-            top: `${highOffset}px`,
+            top: `${wickTop}px`,
             height: `${wickHeight}px`
           }}
         />
         <div
-          className={`chart-body ${colorClass}`}
+          className={`tv-body ${colorClass}`}
           style={{
-            top: `${bodyTopOffset}px`,
+            top: `${bodyTop}px`,
             height: `${bodyHeight}px`
           }}
         />
@@ -148,15 +150,25 @@ function CandleChart({ candles }) {
   const maxHigh = Math.max(...candles.map((c) => c.high));
 
   return (
-    <div className="three-candle-chart">
-      {candles.map((candle, index) => (
-        <CandleStick
-          key={index}
-          candle={candle}
-          minLow={minLow}
-          maxHigh={maxHigh}
-        />
-      ))}
+    <div className="tv-chart">
+      <div className="tv-grid-line tv-grid-1" />
+      <div className="tv-grid-line tv-grid-2" />
+      <div className="tv-grid-line tv-grid-3" />
+      <div className="tv-grid-line tv-grid-4" />
+
+      <div className="tv-price-label tv-price-top">{maxHigh.toFixed(2)}</div>
+      <div className="tv-price-label tv-price-bottom">{minLow.toFixed(2)}</div>
+
+      <div className="tv-chart-inner">
+        {candles.map((candle, index) => (
+          <CandleStick
+            key={index}
+            candle={candle}
+            minLow={minLow}
+            maxHigh={maxHigh}
+          />
+        ))}
+      </div>
     </div>
   );
 }
