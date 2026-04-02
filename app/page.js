@@ -108,59 +108,58 @@ function getImpactClass(impact) {
   return "impact-low";
 }
 
-function MiniCandle({ candle }) {
+function CandleStick({ candle, minLow, maxHigh }) {
   const bullish = candle.close >= candle.open;
-  const color = bullish ? "#4ade80" : "#f87171";
+  const colorClass = bullish ? "candle-green" : "candle-red";
+  const totalRange = Math.max(maxHigh - minLow, 0.0001);
 
-  const range = Math.max(candle.high - candle.low, 0.0001);
-  const bodyTopValue = Math.max(candle.open, candle.close);
-  const bodyBottomValue = Math.min(candle.open, candle.close);
-
-  const wickTop = ((candle.high - bodyTopValue) / range) * 120;
-  const bodyHeight = Math.max(((bodyTopValue - bodyBottomValue) / range) * 120, 8);
-  const wickBottom = ((bodyBottomValue - candle.low) / range) * 120;
+  const highOffset = ((maxHigh - candle.high) / totalRange) * 220;
+  const lowOffset = ((maxHigh - candle.low) / totalRange) * 220;
+  const bodyTopPrice = Math.max(candle.open, candle.close);
+  const bodyBottomPrice = Math.min(candle.open, candle.close);
+  const bodyTopOffset = ((maxHigh - bodyTopPrice) / totalRange) * 220;
+  const bodyBottomOffset = ((maxHigh - bodyBottomPrice) / totalRange) * 220;
+  const bodyHeight = Math.max(bodyBottomOffset - bodyTopOffset, 8);
+  const wickHeight = Math.max(lowOffset - highOffset, 10);
 
   return (
-    <div className="mini-candle-wrap">
-      <div className="mini-candle-label">{candle.time}</div>
+    <div className="chart-candle">
+      <div className="chart-candle-label">{candle.time}</div>
 
-      <div className="mini-candle-box">
-        <div className="mini-candle-chart">
-          <div className="mini-candle-scale top">{candle.high}</div>
-
-          <div className="mini-candle-core">
-            <div className="mini-candle-stick">
-              <div
-                className="wick"
-                style={{
-                  height: `${wickTop}px`,
-                  backgroundColor: color
-                }}
-              />
-              <div
-                className="body"
-                style={{
-                  height: `${bodyHeight}px`,
-                  backgroundColor: color
-                }}
-              />
-              <div
-                className="wick"
-                style={{
-                  height: `${wickBottom}px`,
-                  backgroundColor: color
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="mini-candle-scale bottom">{candle.low}</div>
-        </div>
-
-        <div className={bullish ? "mini-candle-bias green" : "mini-candle-bias red"}>
-          {bullish ? "Bullish" : "Bearish"}
-        </div>
+      <div className="chart-candle-area">
+        <div
+          className={`chart-wick ${colorClass}`}
+          style={{
+            top: `${highOffset}px`,
+            height: `${wickHeight}px`
+          }}
+        />
+        <div
+          className={`chart-body ${colorClass}`}
+          style={{
+            top: `${bodyTopOffset}px`,
+            height: `${bodyHeight}px`
+          }}
+        />
       </div>
+    </div>
+  );
+}
+
+function CandleChart({ candles }) {
+  const minLow = Math.min(...candles.map((c) => c.low));
+  const maxHigh = Math.max(...candles.map((c) => c.high));
+
+  return (
+    <div className="three-candle-chart">
+      {candles.map((candle, index) => (
+        <CandleStick
+          key={index}
+          candle={candle}
+          minLow={minLow}
+          maxHigh={maxHigh}
+        />
+      ))}
     </div>
   );
 }
@@ -171,15 +170,13 @@ function CandleBox({ title, candles, countdown }) {
       <div className="box-top">
         <div>
           <h3>{title}</h3>
-          <p>Last 3 candles</p>
+          <p>Latest 3 candles</p>
         </div>
         <div className="mini-timer">{countdown}</div>
       </div>
 
-      <div className="visual-candle-list">
-        {candles.map((candle, index) => (
-          <MiniCandle key={index} candle={candle} />
-        ))}
+      <div className="chart-shell">
+        <CandleChart candles={candles} />
       </div>
     </div>
   );
