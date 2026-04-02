@@ -45,6 +45,7 @@ body {
   color: #f8fafc;
 }
 
+/* GOLD GLOW WORD */
 .gold-glow-word {
   color: #fcd34d;
   animation: goldPulse 5s ease-in-out infinite;
@@ -302,19 +303,24 @@ body {
   font-weight: 700;
 }
 
+/* SMOOTH 2.5s IN + 2.5s OUT */
 @keyframes goldPulse {
-  0%,
-  85%,
-  100% {
+  0% {
     color: #fcd34d;
     text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
-  92% {
+
+  50% {
     color: #fde68a;
     text-shadow:
-      0 0 8px rgba(251, 191, 36, 0.6),
-      0 0 18px rgba(251, 191, 36, 0.45),
-      0 0 30px rgba(251, 191, 36, 0.3);
+      0 0 12px rgba(251, 191, 36, 0.8),
+      0 0 30px rgba(251, 191, 36, 0.6),
+      0 0 55px rgba(251, 191, 36, 0.4);
+  }
+
+  100% {
+    color: #fcd34d;
+    text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
 }
 
