@@ -309,3 +309,17 @@ body {
     width: 28px;
   }
 }
+
+.loading-box {
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.error-text {
+  color: #fca5a5;
+  font-weight: 700;
+}
