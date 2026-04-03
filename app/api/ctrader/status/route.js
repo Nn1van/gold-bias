@@ -10,4 +10,4 @@ export async function GET() {
       ? "cTrader backend scaffold is ready. Waiting for app approval before full live candle integration."
       : "Missing cTrader environment variables."
   });
-}
+} 
