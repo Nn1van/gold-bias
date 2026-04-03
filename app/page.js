@@ -36,7 +36,6 @@ function getSessionState(now) {
     return {
       currentSession: active.name,
       currentSessionKey: active.key,
-      label: `${active.name} closes in`,
       countdown: end.getTime() - now.getTime()
     };
   }
@@ -55,7 +54,6 @@ function getSessionState(now) {
   return {
     currentSession: "CLOSED",
     currentSessionKey: "",
-    label: `${next.name} opens in`,
     countdown: next.startTime.getTime() - now.getTime()
   };
 }
@@ -72,102 +70,13 @@ function getNextCandleClose(now, tf) {
   return next - now.getTime();
 }
 
-function makeFakeCandles(base, count) {
-  const candles = [];
-  let lastClose = base;
-
-  for (let i = 0; i < count; i++) {
-    const open = lastClose;
-    const move = (Math.random() - 0.5) * 25;
-    const close = Number((open + move).toFixed(2));
-    const high = Number((Math.max(open, close) + Math.random() * 10).toFixed(2));
-    const low = Number((Math.min(open, close) - Math.random() * 10).toFixed(2));
-
-    candles.push({
-      open: Number(open.toFixed(2)),
-      high,
-      low,
-      close
-    });
-
-    lastClose = close;
-  }
-
-  return candles.reverse();
-}
-
-function getBiasFromCandles(candles) {
-  const last = candles[candles.length - 1];
-  if (last.close > last.open) return "Bullish";
-  if (last.close < last.open) return "Bearish";
-  return "Neutral";
-}
-
 function getImpactClass(impact) {
   if (impact === "High") return "impact-high";
   if (impact === "Medium") return "impact-medium";
   return "impact-low";
 }
 
-function CandleStick({ candle, minLow, maxHigh }) {
-  const bullish = candle.close >= candle.open;
-  const colorClass = bullish ? "candle-up" : "candle-down";
-  const totalRange = Math.max(maxHigh - minLow, 0.0001);
-
-  const wickTop = ((maxHigh - candle.high) / totalRange) * 220;
-  const wickBottom = ((maxHigh - candle.low) / totalRange) * 220;
-
-  const bodyTopPrice = Math.max(candle.open, candle.close);
-  const bodyBottomPrice = Math.min(candle.open, candle.close);
-
-  const bodyTop = ((maxHigh - bodyTopPrice) / totalRange) * 220;
-  const bodyBottom = ((maxHigh - bodyBottomPrice) / totalRange) * 220;
-  const bodyHeight = Math.max(bodyBottom - bodyTop, 8);
-  const wickHeight = Math.max(wickBottom - wickTop, 12);
-
-  return (
-    <div className="tv-candle">
-      <div className="tv-candle-area">
-        <div
-          className={`tv-wick ${colorClass}`}
-          style={{
-            top: `${wickTop}px`,
-            height: `${wickHeight}px`
-          }}
-        />
-        <div
-          className={`tv-body ${colorClass}`}
-          style={{
-            top: `${bodyTop}px`,
-            height: `${bodyHeight}px`
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-function CandleChart({ candles }) {
-  const minLow = Math.min(...candles.map((c) => c.low));
-  const maxHigh = Math.max(...candles.map((c) => c.high));
-
-  return (
-    <div className="tv-chart">
-      <div className="tv-chart-inner">
-        {candles.map((candle, index) => (
-          <CandleStick
-            key={index}
-            candle={candle}
-            minLow={minLow}
-            maxHigh={maxHigh}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CandleBox({ title, candles, countdown }) {
+function CandleBox({ title, countdown, statusText }) {
   return (
     <div className="card">
       <div className="box-top">
@@ -179,7 +88,9 @@ function CandleBox({ title, candles, countdown }) {
       </div>
 
       <div className="chart-shell">
-        <CandleChart candles={candles} />
+        <div className="backend-placeholder">
+          {statusText}
+        </div>
       </div>
     </div>
   );
@@ -187,9 +98,8 @@ function CandleBox({ title, candles, countdown }) {
 
 export default function Page() {
   const [now, setNow] = useState(new Date());
-  const [dailyCandles] = useState(() => makeFakeCandles(2325, 3));
-  const [fourHCandles] = useState(() => makeFakeCandles(2318, 3));
-  const [oneHCandles] = useState(() => makeFakeCandles(2312, 3));
+  const [backendMessage, setBackendMessage] = useState("Checking cTrader backend...");
+  const [backendReady, setBackendReady] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -199,11 +109,36 @@ export default function Page() {
     return () => clearInterval(timer);
   }, []);
 
-  const session = useMemo(() => getSessionState(now), [now]);
+  useEffect(() => {
+    async function checkBackend() {
+      try {
+        const res = await fetch("/api/candles", { cache: "no-store" });
+        const data = await res.json();
 
-  const dailyBias = getBiasFromCandles(dailyCandles);
-  const fourHBias = getBiasFromCandles(fourHCandles);
-  const oneHBias = getBiasFromCandles(oneHCandles);
+        if (data.waiting) {
+          setBackendReady(true);
+          setBackendMessage(data.message);
+          return;
+        }
+
+        if (!data.ok) {
+          setBackendReady(false);
+          setBackendMessage(data.error || "cTrader backend is not ready.");
+          return;
+        }
+
+        setBackendReady(true);
+        setBackendMessage("cTrader candle backend is ready.");
+      } catch {
+        setBackendReady(false);
+        setBackendMessage("Could not reach cTrader backend.");
+      }
+    }
+
+    checkBackend();
+  }, []);
+
+  const session = useMemo(() => getSessionState(now), [now]);
 
   return (
     <main className="page">
@@ -242,24 +177,13 @@ export default function Page() {
       <section className="card">
         <div className="section-top">
           <div>
-            <h2>Bias Strength</h2>
-            <p>Based on Daily, 4H, and 1H</p>
+            <h2>cTrader Backend</h2>
+            <p>{backendReady ? "Backend prepared" : "Backend check"}</p>
           </div>
         </div>
 
-        <div className="bias-grid">
-          <div className="small-card">
-            <span>Daily</span>
-            <strong>{dailyBias}</strong>
-          </div>
-          <div className="small-card">
-            <span>4H</span>
-            <strong>{fourHBias}</strong>
-          </div>
-          <div className="small-card">
-            <span>1H</span>
-            <strong>{oneHBias}</strong>
-          </div>
+        <div className="small-card">
+          <strong>{backendMessage}</strong>
         </div>
       </section>
 
@@ -289,18 +213,18 @@ export default function Page() {
       <section className="candle-grid-main">
         <CandleBox
           title="Daily"
-          candles={dailyCandles}
           countdown={formatCountdown(getNextCandleClose(now, "Daily"))}
+          statusText={backendMessage}
         />
         <CandleBox
           title="4H"
-          candles={fourHCandles}
           countdown={formatCountdown(getNextCandleClose(now, "4H"))}
+          statusText={backendMessage}
         />
         <CandleBox
           title="1H"
-          candles={oneHCandles}
           countdown={formatCountdown(getNextCandleClose(now, "1H"))}
+          statusText={backendMessage}
         />
       </section>
     </main>
