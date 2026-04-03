@@ -21,6 +21,7 @@ body {
   padding: 24px;
 }
 
+/* HERO CENTERED */
 .hero {
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 1));
   border: 1px solid rgba(245, 158, 11, 0.2);
@@ -28,6 +29,11 @@ body {
   padding: 28px;
   margin-bottom: 20px;
   transition: all 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero:hover {
@@ -41,18 +47,20 @@ body {
 
 .hero h1 {
   margin: 0;
-  font-size: 42px;
+  font-size: 48px;
   color: #f8fafc;
 }
 
+/* GOLD GLOW */
 .gold-glow-word {
   color: #fcd34d;
   animation: goldPulse 5s ease-in-out infinite;
 }
 
 .hero p {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
   color: #cbd5e1;
+  font-size: 16px;
 }
 
 .card {
@@ -246,53 +254,10 @@ body {
   position: relative;
   height: 260px;
   border-radius: 14px;
-  background:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
   border: 1px solid rgba(148, 163, 184, 0.14);
   overflow: hidden;
   padding: 18px 14px 12px;
-}
-
-.tv-grid-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(148, 163, 184, 0.12);
-}
-
-.tv-grid-1 {
-  top: 20%;
-}
-
-.tv-grid-2 {
-  top: 40%;
-}
-
-.tv-grid-3 {
-  top: 60%;
-}
-
-.tv-grid-4 {
-  top: 80%;
-}
-
-.tv-price-label {
-  position: absolute;
-  right: 10px;
-  font-size: 11px;
-  color: #64748b;
-  background: rgba(2, 6, 23, 0.75);
-  padding: 2px 6px;
-  border-radius: 6px;
-}
-
-.tv-price-top {
-  top: 8px;
-}
-
-.tv-price-bottom {
-  bottom: 8px;
 }
 
 .tv-chart-inner {
@@ -342,20 +307,7 @@ body {
   background: #ef4444;
 }
 
-.loading-box {
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #94a3b8;
-  font-weight: 700;
-}
-
-.error-text {
-  color: #fca5a5;
-  font-weight: 700;
-}
-
+/* GOLD GLOW ANIMATION */
 @keyframes goldPulse {
   0% {
     color: #fcd34d;
