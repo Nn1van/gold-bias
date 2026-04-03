@@ -1,9 +1,9 @@
 import "./globals.css";
-import { Playfair_Display } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
 
-const luxuryFont = Playfair_Display({
+const luxuryFont = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
