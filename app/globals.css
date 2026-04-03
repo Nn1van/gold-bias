@@ -12,6 +12,7 @@ body {
 
 body {
   min-height: 100vh;
+  font-feature-settings: "tnum";
 }
 
 /* PAGE */
@@ -21,72 +22,46 @@ body {
   padding: 24px;
 }
 
-/* HERO */
+/* HERO (CLEAN + PROFESSIONAL) */
 .hero {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 1));
-  border: 1px solid rgba(245, 158, 11, 0.2);
-  border-radius: 24px;
-  padding: 44px 36px;
-  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(2, 6, 23, 1));
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 20px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
-  transition: all 0.3s ease;
 }
 
-.hero:hover {
-  transform: translateY(-6px);
-  border-color: rgba(45, 212, 191, 0.7);
-  box-shadow:
-    0 0 12px rgba(45, 212, 191, 0.25),
-    0 0 35px rgba(45, 212, 191, 0.2);
-}
-
-/* ZIMRA STYLE TITLE */
 .hero h1 {
   margin: 0;
-  font-size: 68px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  line-height: 1;
-  text-transform: uppercase;
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
   color: #f8fafc;
 }
 
-/* GOLD WORD */
 .gold-glow-word {
   color: #fcd34d;
-  font-weight: 600;
-  letter-spacing: 4px;
+  font-weight: 700;
 }
 
-/* SUBTEXT */
 .hero p {
-  margin: 18px 0 0;
-  color: #cbd5e1;
-  font-size: 16px;
-  font-weight: 400;
+  margin: 10px 0 0;
+  color: #94a3b8;
+  font-size: 15px;
 }
 
 /* CARDS */
 .card {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 20px;
-  transition: all 0.25s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(45, 212, 191, 0.7);
-  box-shadow:
-    0 0 10px rgba(45, 212, 191, 0.25),
-    0 0 25px rgba(45, 212, 191, 0.15);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 18px;
 }
 
 /* HEADERS */
@@ -95,20 +70,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  gap: 16px;
+  margin-bottom: 14px;
 }
 
 .section-top h2,
 .box-top h3 {
   margin: 0;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .section-top p,
 .box-top p {
-  margin: 6px 0 0;
-  color: #94a3b8;
+  margin: 4px 0 0;
+  color: #64748b;
   font-size: 13px;
 }
 
@@ -117,7 +92,7 @@ body {
 .bias-grid,
 .candle-grid-main {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .session-grid {
@@ -134,33 +109,27 @@ body {
 
 /* SMALL CARDS */
 .small-card {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
-  padding: 16px;
-  transition: all 0.25s ease;
-}
-
-.small-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(45, 212, 191, 0.7);
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
+  padding: 14px;
 }
 
 .small-card span {
-  color: #94a3b8;
+  color: #64748b;
   font-size: 12px;
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .small-card strong {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* GOLD CARD */
 .gold-card {
-  background: rgba(245, 158, 11, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
 }
 
 .gold-card strong {
@@ -177,20 +146,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 14px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
   padding: 12px 14px;
-  transition: all 0.25s ease;
-}
-
-.news-item:hover {
-  transform: translateY(-3px);
-  border-color: rgba(45, 212, 191, 0.7);
 }
 
 .news-time {
-  color: #94a3b8;
+  color: #64748b;
   font-size: 12px;
 }
 
@@ -201,32 +164,32 @@ body {
 /* IMPACT */
 .impact {
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 5px 10px;
   font-size: 11px;
   font-weight: 600;
 }
 
 .impact-high {
-  background: rgba(239, 68, 68, 0.16);
+  background: rgba(239, 68, 68, 0.2);
   color: #fca5a5;
 }
 
 .impact-medium {
-  background: rgba(234, 179, 8, 0.16);
+  background: rgba(234, 179, 8, 0.2);
   color: #fde68a;
 }
 
 .impact-low {
-  background: rgba(34, 197, 94, 0.16);
+  background: rgba(34, 197, 94, 0.2);
   color: #86efac;
 }
 
 /* TIMER */
 .mini-timer {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   color: #fcd34d;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 13px;
 }
@@ -234,10 +197,10 @@ body {
 /* CHART */
 .tv-chart {
   height: 260px;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.85), rgba(2, 6, 23, 0.95));
-  border: 1px solid rgba(148, 163, 184, 0.08);
-  padding: 16px;
+  border-radius: 10px;
+  background: rgba(2, 6, 23, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  padding: 14px;
 }
 
 .tv-chart-inner {
@@ -249,7 +212,7 @@ body {
 
 /* CANDLES */
 .tv-candle {
-  width: 46px;
+  width: 40px;
   height: 220px;
   display: flex;
   justify-content: center;
@@ -271,7 +234,7 @@ body {
 .tv-body {
   position: absolute;
   left: 50%;
-  width: 16px;
+  width: 14px;
   transform: translateX(-50%);
   border-radius: 2px;
 }
@@ -293,14 +256,14 @@ body {
   }
 
   .hero h1 {
-    font-size: 48px;
+    font-size: 32px;
   }
 
   .tv-candle {
-    width: 36px;
+    width: 30px;
   }
 
   .tv-body {
-    width: 12px;
+    width: 10px;
   }
 }
