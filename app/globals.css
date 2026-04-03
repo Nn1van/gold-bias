@@ -15,21 +15,18 @@ body {
   font-feature-settings: "tnum";
 }
 
-/* PAGE */
 .page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
 }
 
-/* HERO (CLEAN + PROFESSIONAL) */
 .hero {
   background: linear-gradient(135deg, rgba(15, 23, 42, 1), rgba(2, 6, 23, 1));
   border: 1px solid rgba(148, 163, 184, 0.15);
   border-radius: 20px;
   padding: 28px;
   margin-bottom: 20px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +52,6 @@ body {
   font-size: 15px;
 }
 
-/* CARDS */
 .card {
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(148, 163, 184, 0.15);
@@ -64,13 +60,13 @@ body {
   margin-bottom: 18px;
 }
 
-/* HEADERS */
 .section-top,
 .box-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 14px;
+  gap: 16px;
 }
 
 .section-top h2,
@@ -87,16 +83,59 @@ body {
   font-size: 13px;
 }
 
-/* GRID */
-.session-grid,
+/* NEW MARKET SESSION LAYOUT */
+.market-session-card {
+  padding: 26px 28px;
+}
+
+.market-session-title {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.market-session-row {
+  margin-top: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.market-session-box {
+  min-width: 130px;
+  text-align: center;
+  padding: 10px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  color: #f8fafc;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: transparent;
+}
+
+.market-session-timer-wrap {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+.market-session-timer {
+  min-width: 210px;
+  text-align: center;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  color: #f8fafc;
+  font-size: 28px;
+  font-weight: 700;
+  background: transparent;
+}
+
 .bias-grid,
 .candle-grid-main {
   display: grid;
   gap: 14px;
-}
-
-.session-grid {
-  grid-template-columns: repeat(4, 1fr);
 }
 
 .bias-grid {
@@ -107,7 +146,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* SMALL CARDS */
 .small-card {
   background: rgba(2, 6, 23, 0.7);
   border: 1px solid rgba(148, 163, 184, 0.15);
@@ -126,17 +164,6 @@ body {
   font-size: 16px;
 }
 
-/* GOLD CARD */
-.gold-card {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.25);
-}
-
-.gold-card strong {
-  color: #fcd34d;
-}
-
-/* NEWS */
 .news-list {
   display: grid;
   gap: 10px;
@@ -161,7 +188,6 @@ body {
   font-weight: 500;
 }
 
-/* IMPACT */
 .impact {
   border-radius: 999px;
   padding: 5px 10px;
@@ -184,7 +210,6 @@ body {
   color: #86efac;
 }
 
-/* TIMER */
 .mini-timer {
   background: rgba(0, 0, 0, 0.4);
   color: #fcd34d;
@@ -194,7 +219,10 @@ body {
   font-size: 13px;
 }
 
-/* CHART */
+.chart-shell {
+  padding: 0;
+}
+
 .tv-chart {
   height: 260px;
   border-radius: 10px;
@@ -210,7 +238,6 @@ body {
   justify-content: space-evenly;
 }
 
-/* CANDLES */
 .tv-candle {
   width: 40px;
   height: 220px;
@@ -247,9 +274,7 @@ body {
   background: #ef4444;
 }
 
-/* MOBILE */
 @media (max-width: 900px) {
-  .session-grid,
   .bias-grid,
   .candle-grid-main {
     grid-template-columns: 1fr;
@@ -257,6 +282,21 @@ body {
 
   .hero h1 {
     font-size: 32px;
+  }
+
+  .market-session-row {
+    flex-direction: column;
+    margin-top: 24px;
+  }
+
+  .market-session-timer-wrap {
+    margin-top: 32px;
+  }
+
+  .market-session-box,
+  .market-session-timer {
+    width: 100%;
+    max-width: 260px;
   }
 
   .tv-candle {
