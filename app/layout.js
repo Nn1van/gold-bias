@@ -1,7 +1,7 @@
 import "./globals.css";
-import { Bodoni_Moda } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 
-const luxuryFont = Bodoni_Moda({
+const luxuryFont = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
