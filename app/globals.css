@@ -6,7 +6,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
   background: #020617;
   color: white;
 }
@@ -15,57 +14,72 @@ body {
   min-height: 100vh;
 }
 
+/* PAGE */
 .page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
 }
 
-/* HERO CENTERED */
+/* HERO (CENTERED + LUXURY) */
 .hero {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(15, 23, 42, 1));
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 23, 42, 1));
+  border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 24px;
-  padding: 28px;
-  margin-bottom: 20px;
-  transition: all 0.25s ease;
+  padding: 36px;
+  margin-bottom: 24px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  transition: all 0.3s ease;
 }
 
 .hero:hover {
   transform: translateY(-6px);
   border-color: rgba(45, 212, 191, 0.8);
   box-shadow:
-    0 0 12px rgba(45, 212, 191, 0.45),
-    0 0 30px rgba(45, 212, 191, 0.35),
-    0 0 60px rgba(45, 212, 191, 0.25);
+    0 0 12px rgba(45, 212, 191, 0.35),
+    0 0 35px rgba(45, 212, 191, 0.25),
+    0 0 70px rgba(45, 212, 191, 0.18);
 }
 
+/* LUXURY TITLE */
 .hero h1 {
   margin: 0;
-  font-size: 48px;
-  color: #f8fafc;
+  font-size: 56px;
+  letter-spacing: 1px;
+  font-weight: 600;
+
+  background: linear-gradient(90deg, #fcd34d, #fde68a, #fcd34d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 10px rgba(251, 191, 36, 0.2),
+    0 0 25px rgba(251, 191, 36, 0.15);
 }
 
-/* GOLD GLOW */
+/* GOLD WORD */
 .gold-glow-word {
-  color: #fcd34d;
   animation: goldPulse 5s ease-in-out infinite;
+  background: linear-gradient(90deg, #facc15, #fde68a, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   color: #cbd5e1;
   font-size: 16px;
 }
 
+/* CARDS */
 .card {
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
@@ -76,16 +90,16 @@ body {
   transform: translateY(-6px);
   border-color: rgba(45, 212, 191, 0.8);
   box-shadow:
-    0 0 12px rgba(45, 212, 191, 0.45),
-    0 0 30px rgba(45, 212, 191, 0.35),
-    0 0 60px rgba(45, 212, 191, 0.25);
+    0 0 12px rgba(45, 212, 191, 0.4),
+    0 0 30px rgba(45, 212, 191, 0.3),
+    0 0 60px rgba(45, 212, 191, 0.2);
 }
 
+/* HEADERS */
 .section-top,
 .box-top {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
   align-items: center;
   margin-bottom: 16px;
 }
@@ -102,21 +116,7 @@ body {
   font-size: 14px;
 }
 
-.session-now {
-  text-align: right;
-}
-
-.session-now span {
-  display: block;
-  color: #94a3b8;
-  font-size: 13px;
-}
-
-.session-now strong {
-  color: #fcd34d;
-  font-size: 20px;
-}
-
+/* GRID */
 .session-grid,
 .bias-grid,
 .candle-grid-main {
@@ -136,9 +136,10 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* SMALL CARDS */
 .small-card {
   background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 16px;
   transition: all 0.25s ease;
@@ -149,21 +150,19 @@ body {
   border-color: rgba(45, 212, 191, 0.8);
   box-shadow:
     0 0 10px rgba(45, 212, 191, 0.4),
-    0 0 25px rgba(45, 212, 191, 0.3),
-    0 0 45px rgba(45, 212, 191, 0.2);
+    0 0 25px rgba(45, 212, 191, 0.3);
 }
 
 .small-card span {
-  display: block;
   color: #94a3b8;
   font-size: 13px;
-  margin-bottom: 6px;
 }
 
 .small-card strong {
   font-size: 20px;
 }
 
+/* GOLD CARD */
 .gold-card {
   background: rgba(245, 158, 11, 0.12);
   border-color: rgba(245, 158, 11, 0.35);
@@ -173,6 +172,7 @@ body {
   color: #fcd34d;
 }
 
+/* NEWS */
 .news-list {
   display: grid;
   gap: 12px;
@@ -181,10 +181,9 @@ body {
 .news-item {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
   align-items: center;
   background: rgba(0, 0, 0, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 14px 16px;
   transition: all 0.25s ease;
@@ -193,48 +192,41 @@ body {
 .news-item:hover {
   transform: translateY(-4px);
   border-color: rgba(45, 212, 191, 0.8);
-  box-shadow:
-    0 0 10px rgba(45, 212, 191, 0.4),
-    0 0 25px rgba(45, 212, 191, 0.3),
-    0 0 45px rgba(45, 212, 191, 0.2);
 }
 
 .news-time {
   color: #94a3b8;
   font-size: 13px;
-  margin-bottom: 4px;
 }
 
 .news-title {
-  font-weight: 700;
+  font-weight: 600;
 }
 
+/* IMPACT */
 .impact {
   border-radius: 999px;
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 700;
-  border: 1px solid transparent;
 }
 
 .impact-high {
   background: rgba(239, 68, 68, 0.16);
   color: #fca5a5;
-  border-color: rgba(239, 68, 68, 0.35);
 }
 
 .impact-medium {
   background: rgba(234, 179, 8, 0.16);
   color: #fde68a;
-  border-color: rgba(234, 179, 8, 0.35);
 }
 
 .impact-low {
   background: rgba(34, 197, 94, 0.16);
   color: #86efac;
-  border-color: rgba(34, 197, 94, 0.35);
 }
 
+/* TIMER */
 .mini-timer {
   background: rgba(0, 0, 0, 0.3);
   color: #fcd34d;
@@ -243,36 +235,26 @@ body {
   font-weight: 700;
 }
 
-.chart-shell {
-  padding: 0;
-  min-height: 320px;
-  background: transparent;
-  border: none;
-}
-
+/* CHART */
 .tv-chart {
-  position: relative;
   height: 260px;
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
-  border: 1px solid rgba(148, 163, 184, 0.14);
-  overflow: hidden;
-  padding: 18px 14px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  padding: 18px;
 }
 
 .tv-chart-inner {
-  position: relative;
   height: 220px;
   display: flex;
   align-items: flex-end;
   justify-content: space-evenly;
-  gap: 24px;
 }
 
+/* CANDLES */
 .tv-candle {
-  width: 58px;
+  width: 50px;
   height: 220px;
-  position: relative;
   display: flex;
   justify-content: center;
 }
@@ -288,13 +270,12 @@ body {
   left: 50%;
   width: 2px;
   transform: translateX(-50%);
-  border-radius: 999px;
 }
 
 .tv-body {
   position: absolute;
   left: 50%;
-  width: 20px;
+  width: 18px;
   transform: translateX(-50%);
   border-radius: 3px;
 }
@@ -307,27 +288,23 @@ body {
   background: #ef4444;
 }
 
-/* GOLD GLOW ANIMATION */
+/* GOLD ANIMATION */
 @keyframes goldPulse {
   0% {
-    color: #fcd34d;
     text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
-
   50% {
-    color: #fde68a;
     text-shadow:
       0 0 12px rgba(251, 191, 36, 0.8),
       0 0 30px rgba(251, 191, 36, 0.6),
       0 0 55px rgba(251, 191, 36, 0.4);
   }
-
   100% {
-    color: #fcd34d;
     text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
 }
 
+/* MOBILE */
 @media (max-width: 900px) {
   .session-grid,
   .bias-grid,
@@ -335,26 +312,11 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .section-top,
-  .box-top,
-  .news-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .session-now {
-    text-align: left;
-  }
-
-  .tv-chart-inner {
-    gap: 14px;
-  }
-
   .tv-candle {
-    width: 44px;
+    width: 40px;
   }
 
   .tv-body {
-    width: 16px;
+    width: 14px;
   }
 }
