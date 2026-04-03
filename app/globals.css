@@ -166,13 +166,9 @@ body {
     inset 0 0 0 1px rgba(245, 158, 11, 0.04);
 }
 
-.bias-grid,
 .candle-grid-main {
   display: grid;
   gap: 14px;
-}
-
-.candle-grid-main {
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -246,19 +242,63 @@ body {
   padding: 0;
 }
 
-.backend-placeholder {
-  min-height: 260px;
+.tv-chart {
+  height: 260px;
   border-radius: 10px;
   background: rgba(2, 6, 23, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.12);
-  padding: 20px;
+  padding: 14px;
+}
+
+.tv-chart-inner {
+  height: 220px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+.tv-candle {
+  width: 40px;
+  height: 220px;
+  display: flex;
   justify-content: center;
+}
+
+.tv-candle-area {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.tv-wick {
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.tv-body {
+  position: absolute;
+  left: 50%;
+  width: 14px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.candle-up {
+  background: #22c55e;
+}
+
+.candle-down {
+  background: #ef4444;
+}
+
+.candle-notice {
+  margin-top: 10px;
   text-align: center;
-  color: #94a3b8;
-  font-size: 14px;
-  line-height: 1.6;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 @keyframes goldPulse {
@@ -298,5 +338,13 @@ body {
   .market-session-timer {
     width: 100%;
     max-width: 260px;
+  }
+
+  .tv-candle {
+    width: 30px;
+  }
+
+  .tv-body {
+    width: 10px;
   }
 }
