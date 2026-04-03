@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 
 const sessions = [
-  { name: "ASIA", startHour: 0, endHour: 8 },
-  { name: "LONDON", startHour: 8, endHour: 16 },
-  { name: "NEW YORK", startHour: 13, endHour: 21 }
+  { name: "ASIA", key: "asia", startHour: 0, endHour: 8 },
+  { name: "LONDON", key: "london", startHour: 8, endHour: 16 },
+  { name: "NEW YORK", key: "newyork", startHour: 13, endHour: 21 }
 ];
 
 const starterNews = [
@@ -35,6 +35,7 @@ function getSessionState(now) {
 
     return {
       currentSession: active.name,
+      currentSessionKey: active.key,
       label: `${active.name} closes in`,
       countdown: end.getTime() - now.getTime()
     };
@@ -53,6 +54,7 @@ function getSessionState(now) {
 
   return {
     currentSession: "CLOSED",
+    currentSessionKey: "",
     label: `${next.name} opens in`,
     countdown: next.startTime.getTime() - now.getTime()
   };
@@ -213,11 +215,18 @@ export default function Page() {
       </section>
 
       <section className="card market-session-card">
-        <h2 className="market-session-title">Market Session</h2>
+        <h2 className="market-session-title">Market Sessions</h2>
 
         <div className="market-session-row">
           {sessions.map((sessionItem) => (
-            <div key={sessionItem.name} className="market-session-box">
+            <div
+              key={sessionItem.name}
+              className={`market-session-box ${
+                session.currentSessionKey === sessionItem.key
+                  ? `session-active session-${sessionItem.key}`
+                  : ""
+              }`}
+            >
               {sessionItem.name}
             </div>
           ))}
