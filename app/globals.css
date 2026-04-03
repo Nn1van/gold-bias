@@ -14,26 +14,22 @@ body {
   min-height: 100vh;
 }
 
-/* PAGE */
 .page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
 }
 
-/* HERO (CENTERED + LUXURY) */
 .hero {
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 23, 42, 1));
   border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 24px;
-  padding: 36px;
+  padding: 40px 36px;
   margin-bottom: 24px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-
   transition: all 0.3s ease;
 }
 
@@ -46,37 +42,27 @@ body {
     0 0 70px rgba(45, 212, 191, 0.18);
 }
 
-/* LUXURY TITLE */
 .hero h1 {
   margin: 0;
-  font-size: 56px;
-  letter-spacing: 1px;
+  font-size: 72px;
+  line-height: 0.95;
   font-weight: 600;
-
-  background: linear-gradient(90deg, #fcd34d, #fde68a, #fcd34d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 0 10px rgba(251, 191, 36, 0.2),
-    0 0 25px rgba(251, 191, 36, 0.15);
+  letter-spacing: -1px;
+  color: #f8fafc;
 }
 
-/* GOLD WORD */
 .gold-glow-word {
+  color: #fcd34d;
   animation: goldPulse 5s ease-in-out infinite;
-  background: linear-gradient(90deg, #facc15, #fde68a, #facc15);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  margin: 12px 0 0;
+  margin: 16px 0 0;
   color: #cbd5e1;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
 }
 
-/* CARDS */
 .card {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -95,13 +81,13 @@ body {
     0 0 60px rgba(45, 212, 191, 0.2);
 }
 
-/* HEADERS */
 .section-top,
 .box-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  gap: 16px;
 }
 
 .section-top h2,
@@ -116,7 +102,21 @@ body {
   font-size: 14px;
 }
 
-/* GRID */
+.session-now {
+  text-align: right;
+}
+
+.session-now span {
+  color: #94a3b8;
+  font-size: 13px;
+  display: block;
+}
+
+.session-now strong {
+  color: #fcd34d;
+  font-size: 20px;
+}
+
 .session-grid,
 .bias-grid,
 .candle-grid-main {
@@ -136,7 +136,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* SMALL CARDS */
 .small-card {
   background: rgba(0, 0, 0, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -156,13 +155,14 @@ body {
 .small-card span {
   color: #94a3b8;
   font-size: 13px;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .small-card strong {
   font-size: 20px;
 }
 
-/* GOLD CARD */
 .gold-card {
   background: rgba(245, 158, 11, 0.12);
   border-color: rgba(245, 158, 11, 0.35);
@@ -172,7 +172,6 @@ body {
   color: #fcd34d;
 }
 
-/* NEWS */
 .news-list {
   display: grid;
   gap: 12px;
@@ -203,7 +202,6 @@ body {
   font-weight: 600;
 }
 
-/* IMPACT */
 .impact {
   border-radius: 999px;
   padding: 8px 12px;
@@ -226,7 +224,6 @@ body {
   color: #86efac;
 }
 
-/* TIMER */
 .mini-timer {
   background: rgba(0, 0, 0, 0.3);
   color: #fcd34d;
@@ -235,7 +232,13 @@ body {
   font-weight: 700;
 }
 
-/* CHART */
+.chart-shell {
+  padding: 0;
+  min-height: 320px;
+  background: transparent;
+  border: none;
+}
+
 .tv-chart {
   height: 260px;
   border-radius: 14px;
@@ -251,7 +254,6 @@ body {
   justify-content: space-evenly;
 }
 
-/* CANDLES */
 .tv-candle {
   width: 50px;
   height: 220px;
@@ -288,28 +290,44 @@ body {
   background: #ef4444;
 }
 
-/* GOLD ANIMATION */
 @keyframes goldPulse {
   0% {
+    color: #fcd34d;
     text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
   50% {
+    color: #fde68a;
     text-shadow:
       0 0 12px rgba(251, 191, 36, 0.8),
       0 0 30px rgba(251, 191, 36, 0.6),
       0 0 55px rgba(251, 191, 36, 0.4);
   }
   100% {
+    color: #fcd34d;
     text-shadow: 0 0 0 rgba(251, 191, 36, 0);
   }
 }
 
-/* MOBILE */
 @media (max-width: 900px) {
   .session-grid,
   .bias-grid,
   .candle-grid-main {
     grid-template-columns: 1fr;
+  }
+
+  .section-top,
+  .box-top,
+  .news-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .session-now {
+    text-align: left;
+  }
+
+  .hero h1 {
+    font-size: 52px;
   }
 
   .tv-candle {
