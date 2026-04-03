@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 
 const sessions = [
-  { name: "Asia", startHour: 0, endHour: 8 },
-  { name: "London", startHour: 8, endHour: 16 },
-  { name: "New York", startHour: 13, endHour: 21 }
+  { name: "ASIA", startHour: 0, endHour: 8 },
+  { name: "LONDON", startHour: 8, endHour: 16 },
+  { name: "NEW YORK", startHour: 13, endHour: 21 }
 ];
 
 const starterNews = [
@@ -52,7 +52,7 @@ function getSessionState(now) {
     .sort((a, b) => a.startTime.getTime() - b.startTime.getTime())[0];
 
   return {
-    currentSession: "Closed",
+    currentSession: "CLOSED",
     label: `${next.name} opens in`,
     countdown: next.startTime.getTime() - now.getTime()
   };
@@ -212,29 +212,20 @@ export default function Page() {
         <p>Simple gold page for sessions, bias, news, and candles.</p>
       </section>
 
-      <section className="card">
-        <div className="section-top">
-          <div>
-            <h2>Market Sessions</h2>
-            <p>One countdown for Asia, London, and New York</p>
-          </div>
-          <div className="session-now">
-            <span>Current</span>
-            <strong>{session.currentSession}</strong>
-          </div>
-        </div>
+      <section className="card market-session-card">
+        <h2 className="market-session-title">Market Session</h2>
 
-        <div className="session-grid">
+        <div className="market-session-row">
           {sessions.map((sessionItem) => (
-            <div key={sessionItem.name} className="small-card">
-              <span>Session</span>
-              <strong>{sessionItem.name}</strong>
+            <div key={sessionItem.name} className="market-session-box">
+              {sessionItem.name}
             </div>
           ))}
+        </div>
 
-          <div className="small-card gold-card">
-            <span>{session.label}</span>
-            <strong>{formatCountdown(session.countdown)}</strong>
+        <div className="market-session-timer-wrap">
+          <div className="market-session-timer">
+            {formatCountdown(session.countdown)}
           </div>
         </div>
       </section>
