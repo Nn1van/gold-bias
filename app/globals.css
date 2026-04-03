@@ -84,7 +84,6 @@ body {
   font-size: 13px;
 }
 
-/* MARKET SESSION */
 .market-session-card {
   padding: 22px;
 }
@@ -167,15 +166,10 @@ body {
     inset 0 0 0 1px rgba(245, 158, 11, 0.04);
 }
 
-/* OTHER GRIDS */
 .bias-grid,
 .candle-grid-main {
   display: grid;
   gap: 14px;
-}
-
-.bias-grid {
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .candle-grid-main {
@@ -187,13 +181,6 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.15);
   border-radius: 12px;
   padding: 14px;
-}
-
-.small-card span {
-  color: #64748b;
-  font-size: 12px;
-  display: block;
-  margin-bottom: 4px;
 }
 
 .small-card strong {
@@ -259,55 +246,19 @@ body {
   padding: 0;
 }
 
-.tv-chart {
-  height: 260px;
+.backend-placeholder {
+  min-height: 260px;
   border-radius: 10px;
   background: rgba(2, 6, 23, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.12);
-  padding: 14px;
-}
-
-.tv-chart-inner {
-  height: 220px;
+  padding: 20px;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-evenly;
-}
-
-.tv-candle {
-  width: 40px;
-  height: 220px;
-  display: flex;
+  align-items: center;
   justify-content: center;
-}
-
-.tv-candle-area {
-  position: relative;
-  width: 100%;
-  height: 220px;
-}
-
-.tv-wick {
-  position: absolute;
-  left: 50%;
-  width: 2px;
-  transform: translateX(-50%);
-}
-
-.tv-body {
-  position: absolute;
-  left: 50%;
-  width: 14px;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-.candle-up {
-  background: #22c55e;
-}
-
-.candle-down {
-  background: #ef4444;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 @keyframes goldPulse {
@@ -329,7 +280,6 @@ body {
 }
 
 @media (max-width: 900px) {
-  .bias-grid,
   .candle-grid-main {
     grid-template-columns: 1fr;
   }
@@ -348,13 +298,5 @@ body {
   .market-session-timer {
     width: 100%;
     max-width: 260px;
-  }
-
-  .tv-candle {
-    width: 30px;
-  }
-
-  .tv-body {
-    width: 10px;
   }
 }
