@@ -83,55 +83,58 @@ body {
   font-size: 13px;
 }
 
-/* NEW MARKET SESSION LAYOUT */
+/* MARKET SESSION */
 .market-session-card {
-  padding: 26px 28px;
+  padding: 22px;
 }
 
 .market-session-title {
-  margin: 0;
+  margin: 0 0 20px;
   text-align: center;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
+  color: #f8fafc;
 }
 
 .market-session-row {
-  margin-top: 34px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 160px));
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 22px;
 }
 
 .market-session-box {
-  min-width: 130px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
   text-align: center;
-  padding: 10px 16px;
-  border: 2px solid rgba(255, 255, 255, 0.75);
   color: #f8fafc;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  background: transparent;
+  letter-spacing: 0.4px;
 }
 
 .market-session-timer-wrap {
-  margin-top: 64px;
   display: flex;
   justify-content: center;
 }
 
 .market-session-timer {
-  min-width: 210px;
+  background: rgba(2, 6, 23, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 12px;
+  min-width: 180px;
+  padding: 12px 18px;
   text-align: center;
-  padding: 10px 20px;
-  border: 2px solid rgba(255, 255, 255, 0.75);
   color: #f8fafc;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 700;
-  background: transparent;
+  letter-spacing: 0.5px;
 }
 
+/* OTHER GRIDS */
 .bias-grid,
 .candle-grid-main {
   display: grid;
@@ -285,12 +288,9 @@ body {
   }
 
   .market-session-row {
-    flex-direction: column;
-    margin-top: 24px;
-  }
-
-  .market-session-timer-wrap {
-    margin-top: 32px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
   }
 
   .market-session-box,
