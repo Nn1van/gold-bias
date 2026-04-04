@@ -287,20 +287,23 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="news-list">
-          {starterNews.map((item) => (
-            <div key={item.id} className="news-item">
-              <div>
-                <div className="news-time">{item.time} • USD</div>
-                <div className="news-title">{item.title}</div>
-              </div>
-              <div className={`impact ${getImpactClass(item.impact)}`}>
-                {item.impact}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+        <div className="card">
+  <h2>USD News</h2>
+  <p className="sub">Live economic calendar</p>
+
+  {news.map((item, i) => (
+    <div key={i} className="news-item">
+      <div className="left">
+        <span className="time">{item.time}</span>
+        <span className="title">{item.title}</span>
+      </div>
+
+      <div className={`impact ${item.impact}`}>
+        {item.impact}
+      </div>
+    </div>
+  ))}
+</div>
 
       <section className="candle-grid-main">
         <CandleBox
