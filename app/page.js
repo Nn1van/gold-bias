@@ -8,12 +8,15 @@ const sessions = [
   { name: "NEW YORK", key: "newyork", startHour: 13, endHour: 21 }
 ];
 
-const starterNews = [
-  { id: 1, time: "08:30", title: "USD Core CPI m/m", impact: "High" },
-  { id: 2, time: "10:00", title: "USD Fed Chair Speaks", impact: "High" },
-  { id: 3, time: "14:00", title: "USD Crude Oil Inventories", impact: "Medium" },
-  { id: 4, time: "16:00", title: "USD Unemployment Claims", impact: "High" }
-];
+const [news, setNews] = useState([]);
+
+useEffect(() => {
+  fetch("/api/news")
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok) setNews(data.news);
+    });
+}, []);
 
 function formatCountdown(ms) {
   if (ms <= 0) return "00:00:00";
