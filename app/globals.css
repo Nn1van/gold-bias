@@ -175,10 +175,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   background: rgba(2, 6, 23, 0.82);
   border: 1px solid rgba(148, 163, 184, 0.12);
   border-radius: 12px;
   padding: 12px 14px;
+}
+
+.news-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .news-time {
@@ -188,6 +195,7 @@ body {
 
 .news-title {
   font-weight: 600;
+  color: #f8fafc;
 }
 
 .impact {
@@ -195,6 +203,7 @@ body {
   padding: 5px 10px;
   font-size: 11px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .impact-high {
@@ -236,8 +245,7 @@ body {
   position: relative;
   height: 260px;
   border-radius: 12px;
-  background:
-    linear-gradient(180deg, rgba(7, 12, 24, 0.98), rgba(2, 6, 23, 0.98));
+  background: linear-gradient(180deg, rgba(7, 12, 24, 0.98), rgba(2, 6, 23, 0.98));
   border: 1px solid rgba(71, 85, 105, 0.18);
   overflow: hidden;
   padding: 12px 12px 16px;
@@ -368,5 +376,10 @@ body {
 
   .tv-body {
     width: 10px;
+  }
+
+  .news-item {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
