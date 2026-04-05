@@ -8,22 +8,14 @@ const sessions = [
   { name: "NEW YORK", key: "newyork", startHour: 13, endHour: 21 }
 ];
 
-const [news, setNews] = useState([]);
-
-useEffect(() => {
-  fetch("/api/news")
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.ok) setNews(data.news);
-    });
-}, []);
-
 function formatCountdown(ms) {
   if (ms <= 0) return "00:00:00";
+
   const totalSeconds = Math.floor(ms / 1000);
   const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
   const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
   const seconds = String(totalSeconds % 60).padStart(2, "0");
+
   return `${hours}:${minutes}:${seconds}`;
 }
 
@@ -47,9 +39,11 @@ function getSessionState(now) {
     .map((s) => {
       const start = new Date(now);
       start.setHours(s.startHour, 0, 0, 0);
+
       if (start.getTime() <= now.getTime()) {
         start.setDate(start.getDate() + 1);
       }
+
       return { ...s, startTime: start };
     })
     .sort((a, b) => a.startTime.getTime() - b.startTime.getTime())[0];
@@ -176,15 +170,14 @@ function CandleBox({ title, candles, countdown, notice }) {
         <CandleChart candles={candles} />
       </div>
 
-      <div className="candle-notice">
-        {notice}
-      </div>
+      <div className="candle-notice">{notice}</div>
     </div>
   );
 }
 
 export default function Page() {
   const [now, setNow] = useState(new Date());
+  const [news, setNews] = useState([]);
   const [backendMessage, setBackendMessage] = useState("Checking cTrader backend...");
   const [usingRealCandles, setUsingRealCandles] = useState(false);
 
@@ -198,6 +191,25 @@ export default function Page() {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    async function loadNews() {
+      try {
+        const res = await fetch("/api/news", { cache: "no-store" });
+        const data = await res.json();
+
+        if (data.ok && Array.isArray(data.news)) {
+          setNews(data.news);
+        } else {
+          setNews([]);
+        }
+      } catch {
+        setNews([]);
+      }
+    }
+
+    loadNews();
   }, []);
 
   useEffect(() => {
@@ -283,27 +295,31 @@ export default function Page() {
         <div className="section-top">
           <div>
             <h2>USD News</h2>
-            <p>Starter news list for now</p>
+            <p>Live economic calendar</p>
           </div>
         </div>
 
-        <div className="card">
-  <h2>USD News</h2>
-  <p className="sub">Live economic calendar</p>
+        <div className="news-list">
+          {news.length > 0 ? (
+            news.map((item, i) => (
+              <div key={i} className="news-item">
+                <div className="news-left">
+                  <span className="news-time">{item.time}</span>
+                  <span className="news-title">{item.title}</span>
+                </div>
 
-  {news.map((item, i) => (
-    <div key={i} className="news-item">
-      <div className="left">
-        <span className="time">{item.time}</span>
-        <span className="title">{item.title}</span>
-      </div>
-
-      <div className={`impact ${item.impact}`}>
-        {item.impact}
-      </div>
-    </div>
-  ))}
-</div>
+                <div className={`impact ${getImpactClass(item.impact)}`}>
+                  {item.impact}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="small-card">
+              <strong>No news available right now.</strong>
+            </div>
+          )}
+        </div>
+      </section>
 
       <section className="candle-grid-main">
         <CandleBox
